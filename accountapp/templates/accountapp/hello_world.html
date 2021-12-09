@@ -7,9 +7,27 @@
     <title>Title</title>
 </head>
 <body>
-    <h1 id="text">Hello world!</h1>
+    <input id="input_data" type="text">
+    <input value="제출" type="button" onclick="send_input()">
+    <h1 id="text">hello world</h1>
 </body>
+
+
 <script>
+
+    function send_input() {
+        axios.post('/accounts/hello_world/', {
+        input_data: document.getElementById('input_data').value
+      })
+      .then(function (response) {
+        console.log(response);
+        document.getElementById('text').innerHTML = response.data['message'];
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+
     axios.get('/accounts/hello_world/')
       .then(function (response) {
         // handle success
