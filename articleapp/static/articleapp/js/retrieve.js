@@ -19,6 +19,7 @@ function initialize(pk) {
 
             document.getElementById('title').innerHTML = response.data['title'];
             document.getElementById('created_at').innerHTML = response.data['created_at'];
+            document.getElementById('content').innerHTML = response.data['content'];
 
             if (response.data['image'] !== null) {
                 document.getElementById('image').src = response.data['image'];
@@ -26,18 +27,17 @@ function initialize(pk) {
                 document.getElementById('image').style.display = 'none';
             }
 
-//            var user_id = response.data['id'];
-//            var profile_id = response.data['profile']['id'];
-//
-//            if (response.data['is_page_owner'] === "True") {
-//                document.getElementById('owner_section').innerHTML =
-//                    "<div>" +
-//                    "<a href='/accounts/update_template/" + user_id + "'>Update Account</a>" +
-//                    "</div>" +
-//                    "<div>" +
-//                    "<a href='/profiles/update_template/" + profile_id + "'>Update Profile</a>" +
-//                    "</div>";
-//            }
+
+
+            if (response.data['is_page_owner'] === "True") {
+                document.getElementById('owner_section').innerHTML =
+                    "<div>" +
+                    "<a href='/articles/update_template/" + response.data['id'] + "' class='btn btn-primary rounded-pill px-5 my-1'>Update Article</a>" +
+                    "</div>" +
+                    "<div>" +
+                    "<a href='/articles/destroy_template/" +  response.data['id']+ "' class='btn btn-danger rounded-pill px-5 '>Delete Article</a>" +
+                    "</div>";
+            }
 
 
 
